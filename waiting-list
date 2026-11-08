@@ -1,0 +1,520 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Pipsqueak Waitlist</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:wght@400;500;600;700&display=swap"><style>
+/* Layout: a loud sticker-style hero (headline + waitlist card left, illustrated wall panel right),
+   then four feature cards, a butter band about shaping the range, FAQ, and a raspberry sign-up band.
+   Type: Bagel Fat One for the wordmark and headings, Figtree for everything else. */
+:root {
+  --bg: #FFF3F6;
+  --surface: #FFFFFF;
+  --field: #FFF8FA;
+  --ink: #2A1830;
+  --muted: #6B566F;
+  --line: rgba(42, 24, 48, .14);
+  --stroke: #2A1830;
+  --shadow: #2A1830;
+  --accent: #D4235C;
+  --accent-ink: #FFFFFF;
+  --chip: #FFE6EE;
+  --wall: #F8DCE5;
+  --drop: rgba(42, 24, 48, .16);
+  --focus: #2A1830;
+  --cta-bg: #D4235C;
+  --cta-ink: #FFFFFF;
+  --butter: #FFD95A;
+  --butter-ink: #2A1830;
+  --p1: #DCD3FF;
+  --p2: #C6F0DE;
+  --p3: #FFD3E1;
+  --p4: #FFE9A8;
+  --icon-ink: #2A1830;
+  --f-display: "Bagel Fat One", "Arial Rounded MT Bold", "Trebuchet MS", system-ui, sans-serif;
+  --f-body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1C1222;
+    --surface: #2A1B33;
+    --field: #1C1222;
+    --ink: #FFEFF4;
+    --muted: #CDB6D2;
+    --line: rgba(255, 239, 244, .18);
+    --stroke: #FFEFF4;
+    --shadow: #FF6B9B;
+    --accent: #FF6B9B;
+    --accent-ink: #2A0B18;
+    --chip: #3A2545;
+    --wall: #3A2545;
+    --drop: rgba(0, 0, 0, .35);
+    --focus: #FFD95A;
+    --cta-bg: #FF6B9B;
+    --cta-ink: #2A0B18;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1C1222;
+  --surface: #2A1B33;
+  --field: #1C1222;
+  --ink: #FFEFF4;
+  --muted: #CDB6D2;
+  --line: rgba(255, 239, 244, .18);
+  --stroke: #FFEFF4;
+  --shadow: #FF6B9B;
+  --accent: #FF6B9B;
+  --accent-ink: #2A0B18;
+  --chip: #3A2545;
+  --wall: #3A2545;
+  --drop: rgba(0, 0, 0, .35);
+  --focus: #FFD95A;
+  --cta-bg: #FF6B9B;
+  --cta-ink: #2A0B18;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  padding-block: 0 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+svg { max-width: 100%; }
+.wrap { max-width: 1120px; margin-inline: auto; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+h1, h2, .mark { font-family: var(--f-display); font-weight: 400; }
+h1 { font-size: clamp(2.4rem, 7.6vw, 4.4rem); line-height: 1.03; margin: 18px 0 16px; text-wrap: balance; }
+h2 { font-size: clamp(1.8rem, 5vw, 2.7rem); line-height: 1.08; margin: 0 0 14px; text-wrap: balance; }
+h3 { font-size: 1.12rem; line-height: 1.25; margin: 14px 0 6px; }
+p { margin: 0 0 12px; }
+
+/* top bar */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 20px; }
+.mark { font-size: 1.8rem; line-height: 1; display: inline-block; transform: rotate(-3deg); color: var(--ink); text-decoration: none; }
+.mark .dot { color: var(--accent); }
+.nav-btn { font-weight: 700; font-size: .95rem; color: var(--ink); text-decoration: none; border: 2px solid var(--stroke); border-radius: 999px; padding: 8px 16px; background: var(--surface); }
+.nav-btn:hover { background: var(--butter); color: var(--butter-ink); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: 1.04fr .96fr; gap: 48px; align-items: center; padding-block: 20px 72px; }
+.hero > * { min-width: 0; }
+.pill { display: inline-flex; align-items: center; gap: 9px; background: var(--chip); border: 2px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: .88rem; font-weight: 600; }
+.pill i { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); display: block; }
+.squig { color: var(--accent); text-decoration: underline wavy var(--butter) 4px; text-underline-offset: .13em; text-decoration-skip-ink: none; }
+.lede { font-size: 1.16rem; color: var(--muted); max-width: 33em; margin-bottom: 26px; }
+
+/* waitlist card */
+.formbox { background: var(--surface); border: 2px solid var(--stroke); border-radius: 22px; padding: 20px; box-shadow: 6px 6px 0 var(--shadow); max-width: 520px; }
+.lab { display: block; font-weight: 700; font-size: .92rem; margin: 0 0 6px; padding: 0; }
+.lab span { font-weight: 500; color: var(--muted); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; }
+input[type="email"], input[type="text"] {
+  flex: 1 1 220px; min-width: 0; width: 100%; height: 52px; padding: 0 14px;
+  border: 2px solid var(--stroke); border-radius: 14px; background: var(--field); color: var(--ink);
+  font: inherit; font-size: 1rem;
+}
+input::placeholder { color: var(--muted); opacity: .85; }
+.btn {
+  flex: 1 1 170px; height: 52px; padding: 0 22px; border: 2px solid var(--stroke); border-radius: 14px;
+  background: var(--accent); color: var(--accent-ink); font: inherit; font-weight: 700; font-size: 1rem; cursor: pointer;
+  box-shadow: 0 3px 0 var(--stroke); transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover { transform: translateY(-1px); box-shadow: 0 4px 0 var(--stroke); }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--stroke); }
+.btn:disabled { opacity: .7; cursor: progress; }
+.err { color: var(--accent); font-weight: 600; font-size: .92rem; margin: 8px 0 0; }
+fieldset { border: 0; margin: 16px 0 0; padding: 0; min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.chip span { display: inline-block; padding: 7px 15px; border: 2px solid var(--line); border-radius: 999px; background: var(--chip); font-weight: 600; font-size: .95rem; }
+.chip input:checked + span { background: var(--accent); color: var(--accent-ink); border-color: var(--stroke); }
+.chip input:focus-visible + span { outline: 3px solid var(--focus); outline-offset: 2px; }
+.more { margin-top: 14px; }
+.more summary { cursor: pointer; font-weight: 600; font-size: .93rem; color: var(--muted); }
+.more .lab { margin-top: 12px; }
+.more input { flex: none; }
+.pick { margin-top: 16px; display: grid; gap: 10px; }
+.pick .lab { margin: 0; }
+.pick input[type="text"] { flex: none; }
+.sel { position: relative; }
+.sel::after { content: ""; position: absolute; right: 18px; top: 50%; width: 8px; height: 8px; border-right: 2.5px solid var(--ink); border-bottom: 2.5px solid var(--ink); transform: translateY(-70%) rotate(45deg); pointer-events: none; }
+select { appearance: none; -webkit-appearance: none; width: 100%; height: 52px; padding: 0 44px 0 14px; border: 2px solid var(--stroke); border-radius: 14px; background: var(--field); color: var(--ink); font: inherit; font-size: 1rem; cursor: pointer; }
+@media (prefers-reduced-motion: no-preference) {
+  .sub:not([hidden]) { animation: drop .25s ease-out; }
+  @keyframes drop { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+}
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.fine { font-size: .84rem; color: var(--muted); margin: 14px 0 0; }
+.done { text-align: left; }
+.done h3 { font-family: var(--f-display); font-weight: 400; font-size: 1.7rem; margin: 0 0 6px; }
+.done .prev { font-weight: 600; color: var(--accent); }
+
+/* wall panel */
+.panel { position: relative; background: var(--wall); border: 2px solid var(--stroke); border-radius: 28px; aspect-ratio: 4 / 3; overflow: hidden; }
+.panel svg { display: block; width: 100%; height: 100%; }
+.shadow { filter: drop-shadow(8px 10px 0 var(--drop)); }
+.sticker {
+  position: absolute; bottom: 14px; right: 14px; width: 92px; height: 92px; border-radius: 50%;
+  background: var(--butter); color: var(--butter-ink); border: 2px solid #2A1830;
+  display: grid; place-items: center; text-align: center;
+  font-family: var(--f-display); font-size: 1.02rem; line-height: 1.05; transform: rotate(12deg);
+}
+.cap { font-size: .84rem; color: var(--muted); margin: 10px 4px 0; }
+
+/* features */
+.section { padding-block: 24px 64px; }
+.features { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 2px solid var(--line); border-radius: 20px; padding: 22px; min-width: 0; }
+.card p { color: var(--muted); margin: 0; }
+.ico { width: 56px; height: 56px; border-radius: 16px; display: grid; place-items: center; color: var(--icon-ink); }
+.ico svg { width: 34px; height: 34px; }
+
+/* band */
+.band { background: var(--butter); color: var(--butter-ink); border: 2px solid #2A1830; border-radius: 28px; padding: clamp(24px, 5vw, 48px); margin-bottom: 64px; }
+.band p { max-width: 38em; font-size: 1.08rem; margin: 0; }
+
+/* faq */
+.faq { max-width: 760px; }
+.faq details { border-bottom: 2px solid var(--line); padding-block: 4px; }
+.faq summary { cursor: pointer; font-weight: 700; padding-block: 14px; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-family: var(--f-display); font-size: 1.4rem; line-height: 1; color: var(--accent); flex: none; }
+.faq details[open] summary::after { content: "\2212"; }
+.faq details p { color: var(--muted); padding-bottom: 14px; margin: 0; }
+
+/* sign-up band */
+.cta { background: var(--cta-bg); color: var(--cta-ink); border: 2px solid var(--stroke); border-radius: 28px; padding: clamp(24px, 5vw, 52px); margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center; }
+.cta > * { min-width: 0; }
+.cta h2 { margin: 0; }
+.cta .formbox { box-shadow: none; max-width: none; color: var(--ink); --ink: #2A1830; --muted: #6B566F; --field: #FFF8FA; --surface: #FFFFFF; --stroke: #2A1830; --accent: #D4235C; --accent-ink: #FFFFFF; --focus: #2A1830; }
+
+footer { padding-block: 40px 8px; font-size: .86rem; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+footer p { margin: 0; max-width: 56em; }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; gap: 36px; padding-bottom: 48px; }
+  .cta { grid-template-columns: 1fr; }
+  .formbox { max-width: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .pill i { animation: pulse 2s ease-in-out infinite; }
+  .sticker { animation: wobble 4s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: .55; } }
+  @keyframes wobble { 0%, 100% { transform: rotate(12deg); } 50% { transform: rotate(5deg); } }
+}
+</style></head><body>
+
+
+
+
+
+
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top" aria-label="pipsqueak">pipsqueak<span class="dot">.</span></a>
+    <a class="nav-btn" href="#join">Join the waitlist</a>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <span class="pill"><i></i>Prototype stage &middot; waitlist open</span>
+        <h1>A little wall home for your <span class="squig">big bottle</span>.</h1>
+        <p class="lede">Birch blocks that hold your Owala, Stanley or Chilly&rsquo;s at a jaunty 45&deg; lean. Cork-lined, wall-mounted and sized to fit your exact bottle.</p>
+
+        <div class="formbox" id="join">
+          <form data-form novalidate>
+            <label class="lab" for="email-hero">Your email</label>
+            <div class="row">
+              <input id="email-hero" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+              <button class="btn" type="submit">Join the waitlist</button>
+            </div>
+            <p class="err" role="alert" hidden></p>
+            <div class="pick">
+              <label class="lab" for="brand-hero">Which bottle do you have? <span>(optional)</span></label>
+              <div class="sel">
+                <select id="brand-hero" name="brand" data-brand>
+                  <option value="">Choose your brand</option>
+                  <option value="Owala">Owala</option>
+                  <option value="Stanley">Stanley</option>
+                  <option value="Chilly's">Chilly&rsquo;s</option>
+                  <option value="Something else">Something else</option>
+                </select>
+              </div>
+              <div class="sel sub" hidden>
+                <select id="size-hero" name="size" aria-label="Bottle size" data-size></select>
+              </div>
+              <input class="sub" id="other-hero" name="size_other" type="text" placeholder="Which bottle? e.g. Hydro Flask 32oz" maxlength="80" aria-label="Which bottle" data-other hidden>
+            </div>
+            <details class="more">
+              <summary>Anything else need a little wall home? (optional)</summary>
+              <label class="lab" for="else-hero">Sunglasses, caps, hair clips&hellip;</label>
+              <input id="else-hero" name="else" type="text" placeholder="Tell us what you&rsquo;d like to see next" maxlength="120">
+            </details>
+            <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <p class="fine">We&rsquo;ll only email you about pipsqueak. Reply to any email and we&rsquo;ll take you off the list.</p>
+          </form>
+          <div class="done" tabindex="-1" role="status" hidden>
+            <h3>You&rsquo;re on the list!</h3>
+            <p>We&rsquo;ll email you when pipsqueak is ready for its first hello.</p>
+            <p class="prev" hidden>Preview only: this form isn&rsquo;t connected yet, so nothing was saved.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="panel">
+          <svg viewBox="0 0 640 480" role="img" aria-label="Illustration: three birch blocks on a wall, each holding a coloured water bottle leaning at 45 degrees">
+            <defs>
+              <mask id="slotmask" maskUnits="userSpaceOnUse" x="-80" y="-140" width="160" height="160">
+                <rect x="-80" y="-140" width="160" height="160" fill="#fff"/>
+                <rect x="-17" y="-140" width="34" height="102" rx="9" fill="#000"/>
+              </mask>
+              <g id="bottle">
+                <path d="M-42 -18V-204Q-42 -232 -26 -232H26Q42 -232 42 -204V-18Z" style="fill:var(--c)"/>
+                <rect x="-31" y="-214" width="7" height="168" rx="3.5" fill="#fff" opacity=".35"/>
+                <rect x="-27" y="-252" width="54" height="24" rx="9" style="fill:var(--lid)"/>
+                <path d="M-15 -250V-266a15 15 0 0 1 30 0V-250" fill="none" stroke-width="7" stroke-linecap="round" style="stroke:var(--lid)"/>
+              </g>
+              <g id="block">
+                <g mask="url(#slotmask)">
+                  <rect x="-64" y="-108" width="128" height="108" rx="4" fill="#EBCB9C" stroke="#B98A4E" stroke-width="3"/>
+                  <rect x="-62.5" y="-106.5" width="16" height="105" fill="#000" opacity=".07"/>
+                  <rect x="46.5" y="-106.5" width="16" height="105" fill="#000" opacity=".07"/>
+                  <path d="M-62 -18H62M-62 -36H62M-62 -54H62M-62 -72H62M-62 -90H62" stroke="#B98A4E" stroke-width="2" opacity=".55"/>
+                </g>
+              </g>
+            </defs>
+
+            <g class="shadow"><g transform="translate(70 345) rotate(45)" style="--c:#8EA2FF;--lid:#3B3F8F"><use href="#bottle"/><use href="#block"/></g></g>
+            <g class="shadow"><g transform="translate(235 345) rotate(45) scale(.92)" style="--c:#FF9CBC;--lid:#A8234F"><use href="#bottle" transform="scale(.82 1)"/><use href="#block"/></g></g>
+            <g class="shadow"><g transform="translate(400 345) rotate(45) scale(1.04)" style="--c:#7ED3B2;--lid:#1F6E55"><use href="#bottle" transform="scale(1.12 1)"/><use href="#block"/></g></g>
+
+            <g transform="translate(84 132)" fill="none" stroke-linecap="round" style="stroke:var(--ink)" stroke-width="2.5">
+              <path d="M0 0V-80" stroke-dasharray="1 8"/>
+              <path d="M0 0L57 -57"/>
+              <path d="M0 -42A42 42 0 0 1 29.7 -29.7"/>
+              <text x="-10" y="-58" text-anchor="end" stroke="none" style="fill:var(--ink);font-family:var(--f-display);font-size:26px">45&deg;</text>
+              <text x="-4" y="26" stroke="none" style="fill:var(--muted);font-family:var(--f-body);font-size:13px;font-weight:600">the pipsqueak lean</text>
+            </g>
+          </svg>
+          <div class="sticker" aria-hidden="true">join the list</div>
+        </div>
+        <p class="cap">Illustration of the prototype, not a photo. Same block size, a hole cut for each bottle.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="why">
+      <h2 id="why">Small block, big opinions.</h2>
+      <div class="features">
+        <div class="card">
+          <div class="ico" style="background:var(--p1)"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="4" width="10" height="26" rx="4" transform="rotate(45 17 17)"/><path d="M6 29h8" opacity=".5"/></svg></div>
+          <h3>A jaunty 45&deg; lean</h3>
+          <p>See the whole bottle, with no rolling about. It looks like a display, not storage.</p>
+        </div>
+        <div class="card">
+          <div class="ico" style="background:var(--p2)"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="26" height="26" rx="7"/><circle cx="17" cy="17" r="7"/></svg></div>
+          <h3>Sized to your bottle</h3>
+          <p>Every block is cut for one bottle size, so yours sits snug instead of wobbling in a one-size slot.</p>
+        </div>
+        <div class="card">
+          <div class="ico" style="background:var(--p3)"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="17" r="12"/><path d="M12 13h.01M20 11h.01M22 19h.01M13 22h.01M17 17h.01" stroke-width="3.4"/></svg></div>
+          <h3>Cork-lined</h3>
+          <p>A soft lining inside keeps your bottle&rsquo;s finish scratch-free. Pretty things stay pretty.</p>
+        </div>
+        <div class="card">
+          <div class="ico" style="background:var(--p4)"><svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="9" width="20" height="16" rx="4"/><path d="M13 14h.01M21 14h.01M13 20h.01M21 20h.01" stroke-width="3.4"/></svg></div>
+          <h3>Hidden mount</h3>
+          <p>Two screws and a plate behind the block, so no rail and no clutter. A no-drill version for renters is in the works.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" aria-labelledby="next">
+      <h2 id="next">You pick what we make next.</h2>
+      <p>We&rsquo;re making one thing properly first. Tell us which bottle you own and what else needs a home, and the waitlist decides which sizes and which products come next.</p>
+    </section>
+
+    <section class="section faq" aria-labelledby="faq">
+      <h2 id="faq">Questions, answered.</h2>
+      <details>
+        <summary>When can I get one?</summary>
+        <p>We&rsquo;re still at the prototype stage, so there&rsquo;s no date yet. People on the waitlist hear first.</p>
+      </details>
+      <details>
+        <summary>How much will it cost?</summary>
+        <p>We haven&rsquo;t set a price yet because we&rsquo;re still working out the build. We&rsquo;ll share it with the waitlist before anything goes on sale.</p>
+      </details>
+      <details>
+        <summary>Will it fit my bottle?</summary>
+        <p>That&rsquo;s what the waitlist is for. Tell us which bottle you have and we&rsquo;ll size the first batch around the most requested ones.</p>
+      </details>
+      <details>
+        <summary>Do I have to drill into my wall?</summary>
+        <p>The standard version mounts with two screws. A no-drill option for renters is in development.</p>
+      </details>
+      <details>
+        <summary>What happens to my email?</summary>
+        <p>We only use it to tell you about pipsqueak and to ask what you&rsquo;d like us to make. We won&rsquo;t sell it or share it. Reply to any email and we&rsquo;ll remove you.</p>
+      </details>
+      <details>
+        <summary>Is pipsqueak connected to Owala, Stanley or Chilly&rsquo;s?</summary>
+        <p>No. Pipsqueak is independent. Owala, Stanley and Chilly&rsquo;s are trademarks of their owners, and we&rsquo;re not endorsed by them.</p>
+      </details>
+    </section>
+
+    <section class="cta" aria-labelledby="last">
+      <h2 id="last">Get on the list.</h2>
+      <div class="formbox">
+        <form data-form novalidate>
+          <label class="lab" for="email-end">Your email</label>
+          <div class="row">
+            <input id="email-end" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+            <button class="btn" type="submit">Join the waitlist</button>
+          </div>
+          <p class="err" role="alert" hidden></p>
+          <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="fine">We&rsquo;ll only email you about pipsqueak.</p>
+        </form>
+        <div class="done" tabindex="-1" role="status" hidden>
+          <h3>You&rsquo;re on the list!</h3>
+          <p>We&rsquo;ll email you when pipsqueak is ready for its first hello.</p>
+          <p class="prev" hidden>Preview only: this form isn&rsquo;t connected yet, so nothing was saved.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span class="mark" style="font-size:1.3rem">pipsqueak<span class="dot">.</span></span>
+    <p>&copy; 2026 pipsqueak. Independent and not affiliated with or endorsed by Owala, Stanley or Chilly&rsquo;s. Product names are trademarks of their owners.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  // Sign-ups are saved to a Supabase table. The hosted build fills these two in.
+  // While they are empty the form runs in preview mode and saves nothing.
+  var SUPABASE_URL = "https://adfhjzvojlhftomttiwm.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_XMPh9mFzAHGBZTZZUKZKTw_MkfEDpqu";
+
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Sizes offered once a brand is picked. These are what people own, not a promise of what we will make.
+  var SIZES = {
+    "Owala": ["16oz Kids", "19oz", "24oz", "32oz", "40oz", "Not sure"],
+    "Stanley": ["14oz", "20oz", "30oz", "40oz", "64oz", "Not sure"],
+    "Chilly's": ["260ml", "350ml", "500ml", "750ml", "1 litre", "Not sure"]
+  };
+
+  document.querySelectorAll("[data-form]").forEach(function (form) {
+    var box = form.closest(".formbox");
+    var err = form.querySelector(".err");
+    var done = box.querySelector(".done");
+    var btn = form.querySelector(".btn");
+
+    var brandSel = form.querySelector("[data-brand]");
+    if (brandSel) {
+      var sizeSel = form.querySelector("[data-size]");
+      var sizeWrap = sizeSel.parentNode;
+      var other = form.querySelector("[data-other]");
+      brandSel.addEventListener("change", function () {
+        sizeWrap.hidden = true;
+        other.hidden = true;
+        other.value = "";
+        sizeSel.innerHTML = "";
+        var list = SIZES[brandSel.value];
+        if (list) {
+          var first = document.createElement("option");
+          first.value = "";
+          first.textContent = "Choose your size";
+          sizeSel.appendChild(first);
+          list.forEach(function (s) {
+            var o = document.createElement("option");
+            o.value = s;
+            o.textContent = s;
+            sizeSel.appendChild(o);
+          });
+          sizeWrap.hidden = false;
+        } else if (brandSel.value) {
+          other.hidden = false;
+        }
+      });
+    }
+
+    function finish(preview) {
+      form.hidden = true;
+      done.hidden = false;
+      if (preview) done.querySelector(".prev").hidden = false;
+      done.focus();
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      err.hidden = true;
+      if (form.elements.company && form.elements.company.value) { finish(false); return; }
+      var email = form.elements.email;
+      if (!email.value || !email.checkValidity()) {
+        err.textContent = "Add a valid email so we can tell you when it’s ready.";
+        err.hidden = false;
+        email.focus();
+        return;
+      }
+      var label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "Joining…";
+      if (!SUPABASE_URL || !SUPABASE_KEY) { finish(true); return; }
+
+      var params = new URLSearchParams(window.location.search);
+      var brandEl = form.querySelector("[data-brand]");
+      var bottles = brandEl && brandEl.value ? [brandEl.value] : [];
+      var val = function (name) { var f = form.elements[name]; return f && f.value.trim() ? f.value.trim() : null; };
+      var param = function (name, max) { return (params.get(name) || "").slice(0, max) || null; };
+      var row = {
+        email: email.value.trim(),
+        bottles: bottles.length ? bottles : null,
+        size: val("size") || val("size_other"),
+        wishlist: val("else"),
+        utm_source: param("utm_source", 100),
+        utm_medium: param("utm_medium", 100),
+        utm_campaign: param("utm_campaign", 100),
+        referrer: (document.referrer || "").slice(0, 500) || null
+      };
+      var headers = { "Content-Type": "application/json", apikey: SUPABASE_KEY, Prefer: "return=minimal" };
+      if (SUPABASE_KEY.indexOf("eyJ") === 0) headers.Authorization = "Bearer " + SUPABASE_KEY;
+
+      fetch(SUPABASE_URL + "/rest/v1/pipsqueak_waitlist", { method: "POST", headers: headers, body: JSON.stringify(row) })
+        .then(function (r) {
+          // 409 means this email is already on the list, which is a success for the visitor.
+          if (r.ok || r.status === 409) { finish(false); return; }
+          throw new Error("bad response");
+        })
+        .catch(function () {
+          btn.disabled = false;
+          btn.textContent = label;
+          err.textContent = "Something went wrong. Please try again in a moment.";
+          err.hidden = false;
+        });
+    });
+  });
+
+  document.querySelectorAll('a[href="#join"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var target = document.getElementById("join");
+      target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      var input = document.getElementById("email-hero");
+      if (input && !input.form.hidden) setTimeout(function () { input.focus({ preventScroll: true }); }, reduce ? 0 : 400);
+    });
+  });
+})();
+</script>
+</body></html>
